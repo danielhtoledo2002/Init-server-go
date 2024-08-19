@@ -63,7 +63,7 @@ func (s *ListUsers) DecodeJson(w http.ResponseWriter, r *http.Request) {
 }
 
 // Esta función solo se encarga de enviar el html al cliente en un navegador
-func (s *ListUsers) SentHtml(w http.ResponseWriter, r *http.Request) {
+func SentHtml(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "forms.html")
 }
 
@@ -85,7 +85,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/decode", list_users.DecodeJson).Methods(http.MethodPost)
 	r.HandleFunc("/users", list_users.ShowUsers).Methods(http.MethodGet)
-	r.HandleFunc("/", list_users.SentHtml).Methods(http.MethodGet)
+	r.HandleFunc("/", SentHtml).Methods(http.MethodGet)
 
 	fmt.Println("ListUsers is running on port 8080")
 	if err := http.ListenAndServe(":8080", r); err != nil {
