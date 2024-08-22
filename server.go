@@ -74,7 +74,7 @@ json a una ruta que en este caso es /users
 func (s *ListUsers) ShowUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(s.users); err != nil {
-		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		http.Error(w, "Fallo al serializar los usuarios", http.StatusInternalServerError)
 	}
 }
 
